@@ -1,12 +1,18 @@
 package mercadinho;
 
-public class Produto {
-    protected String nome;
-    protected int estoque;
-    protected double preco;
-    protected int codigo;
+public abstract class Produto {
+    private String nome;
+    private int estoque;
+    private double preco;
+    private int codigo;
+
+    public Produto() {
+    }
 
     public Produto(String nome, int estoque, double preco, int codigo) {
+        if(nome == null || nome.isEmpty()){
+            throw new IllegalArgumentException("Nome inválido!");
+        }
         this.nome = nome;
         this.estoque = estoque;
         this.preco = preco;
@@ -24,6 +30,8 @@ public class Produto {
             this.estoque -= quantidade;
         }
     }
+
+    public abstract void aplicarDesconto();
 
     public String getNome() {
         return nome;
